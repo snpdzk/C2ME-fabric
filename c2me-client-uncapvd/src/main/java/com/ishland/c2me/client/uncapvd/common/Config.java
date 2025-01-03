@@ -14,10 +14,10 @@ public class Config {
         final double memoryInGiB = memoryInGiB();
         if (memoryInGiB < 1.0) return 16;
         if (memoryInGiB < 3.0) return 32;
-        for (int i = 33; i <= 248; i ++) {
-            if (memoryInMiBNeededForVD(i) / 1024.0 > memoryInGiB - 1) return i - 1;
+        for (int i = 33; i <= 1024; i ++) {
+            if (memoryInMiBNeededForVD(i) / 128 > memoryInGiB - 1) return i - 1;
         }
-        return 248;
+        return 1024;
     }
 
     private static double memoryInMiBNeededForVD(int vd) {
