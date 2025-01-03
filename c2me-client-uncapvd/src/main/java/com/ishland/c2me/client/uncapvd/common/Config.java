@@ -15,13 +15,13 @@ public class Config {
         if (memoryInGiB < 1.0) return 16;
         if (memoryInGiB < 3.0) return 32;
         for (int i = 33; i <= 1024; i ++) {
-            if (memoryInMiBNeededForVD(i) / 128 > memoryInGiB - 1) return i - 1;
+            if (memoryInMiBNeededForVD(i) / 512 > memoryInGiB - 1) return i - 1;
         }
         return 1024;
     }
 
     private static double memoryInMiBNeededForVD(int vd) {
-        return Math.pow(vd * 2 + 1, 2) * (PlatformDependent.isJ9Jvm() ? 0.3 : 0.4);
+        return Math.pow(vd * 2 + 1, 2) * (PlatformDependent.isJ9Jvm() ? 0.1 : 0.1);
     }
 
     private static double memoryInGiB() {
